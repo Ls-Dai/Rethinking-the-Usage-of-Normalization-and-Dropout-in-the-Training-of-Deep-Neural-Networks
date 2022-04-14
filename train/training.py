@@ -23,6 +23,7 @@ class Learner():
             raise Exception('task not implemented!')
         self.config = train_config
         self.model = train_config['model']
+        self.model_name = self.model.model_name
         self.model.to(device)
         self.criterion = train_config['loss_fn']
         self.optimizer = train_config['optim']
@@ -30,7 +31,9 @@ class Learner():
         
         # initialization of record variables
         self.test_acc_all = []
-    
+        self.best_acc = 0.0
+        self.model_path = f'./res/{task}_{self.model_name}_best.pth'
+        
     def train(self):
         cudnn.benchmark = True
         epochs = self.config['epochs']
@@ -42,7 +45,11 @@ class Learner():
             self.train_step(epoch)
             
             self.model.eval()
-            self.validate(epoch)
+            test_acc = self.validate(epoch)
+            
+            if test_acc > self.best_acc:
+                self.save_model()
+                self.best_acc = test_acc
             
         return self.test_acc_all
     
@@ -104,10 +111,15 @@ class Learner():
         
         self.test_acc_all.append(top1_acc)
         
+        return top1_acc.avg
+        
     def save_model(self):
+        torch.save(self.model.state_dict(), self.model_path)
+        
+    def check_point(self):
         # not implemented yet
         pass
-        
+    
     def logging(self):
         # not implemented yet
         pass

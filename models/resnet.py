@@ -60,6 +60,8 @@ class ResNet(nn.Module):
         self.linear = nn.Linear(64, num_classes)
 
         self.apply(_weights_init)
+        
+        self.model_name = None
 
     def _make_layer(self, block, planes, num_blocks, stride):
         strides = [stride] + [1]*(num_blocks-1)
@@ -79,10 +81,12 @@ class ResNet(nn.Module):
         out = out.view(out.size(0), -1)
         out = self.linear(out)
         return out
-    
+
 def resnet110():
     print("INFO: Creating resnet110 model")
-    return ResNet(BasicBlock, [18,18,18])
+    model = ResNet(BasicBlock, [18,18,18])
+    model.model_name = 'resnet110'
+    return model
 
 def resnet164():
     return ResNet(BasicBlock, [27,27,27])
