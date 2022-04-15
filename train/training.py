@@ -47,6 +47,9 @@ class Learner():
             self.model.eval()
             test_acc = self.validate(epoch)
             
+            self.test_acc_all.append(test_acc)
+            self.scheduler.step()
+            
             if test_acc > self.best_acc:
                 self.save_model()
                 self.best_acc = test_acc
@@ -108,8 +111,6 @@ class Learner():
                 top1_acc.update(prec1.item(), labels.size(0))
         if verbose:
             print('Epoch[{}] *Validation*: Prec@1 {top1.avg:.3f}'.format(epoch, top1=top1_acc))
-        
-        self.test_acc_all.append(top1_acc)
         
         return top1_acc.avg
         
