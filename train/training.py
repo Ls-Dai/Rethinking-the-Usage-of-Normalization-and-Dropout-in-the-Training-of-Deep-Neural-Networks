@@ -1,7 +1,7 @@
 import torch
 import torch.backends.cudnn as cudnn
 from tqdm import tqdm
-from utils.dataset import cifar10_dataset
+from utils.dataset import cifar10_dataset, cifar100_dataset
 from utils.utils import AverageMeter, accuracy
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -19,6 +19,8 @@ class Learner():
         # training settings
         if task == 'cifar10':
             self.train_loader, self.test_loader = cifar10_dataset()
+        elif task =='cifar100':
+            self.train_loader, self.test_loader = cifar100_dataset()
         else:
             raise Exception('task not implemented!')
         self.config = train_config

@@ -177,3 +177,9 @@ def resnet110_ic():
     model = ResNet_IC(BasicBlock_IC, [18,18,18])
     model.model_name = 'resnet110_ic'
     return model
+
+def resnet164_ic():
+    print("INFO: Creating resnet164 model with IC layer")
+    model = ResNet_IC(BasicBlock_IC, [27,27,27])
+    model.model_name = 'resnet164_ic'
+    return model
