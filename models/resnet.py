@@ -160,26 +160,26 @@ class ResNet_IC(nn.Module):
         return out
 
 
-def resnet110():
+def resnet110(num_classes):
     print("INFO: Creating resnet110 model")
-    model = ResNet(BasicBlock, [18,18,18])
+    model = ResNet(BasicBlock, [18,18,18], num_classes=num_classes)
     model.model_name = 'resnet110'
     return model
 
-def resnet164():
+def resnet164(num_classes):
     print("INFO: Creating resnet164 model")
-    model = ResNet(BasicBlock, [27,27,27])
+    model = ResNet(BasicBlock, [27,27,27], num_classes=num_classes)
     model.model_name = 'resnet164'
     return model
 
-def resnet110_ic():
+def resnet110_ic(num_classes):
     print("INFO: Creating resnet110 model with IC layer")
-    model = ResNet_IC(BasicBlock_IC, [18,18,18])
+    model = ResNet_IC(BasicBlock_IC, [18,18,18], num_classes=num_classes)
     model.model_name = 'resnet110_ic'
     return model
 
-def resnet164_ic():
+def resnet164_ic(num_classes):
     print("INFO: Creating resnet164 model with IC layer")
-    model = ResNet_IC(BasicBlock_IC, [27,27,27])
+    model = ResNet_IC(BasicBlock_IC, [27,27,27], num_classes=num_classes)
     model.model_name = 'resnet164_ic'
     return model
