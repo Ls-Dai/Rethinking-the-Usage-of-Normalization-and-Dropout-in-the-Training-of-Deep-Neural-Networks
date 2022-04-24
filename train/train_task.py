@@ -1,11 +1,15 @@
 import torch
 import torch.nn as nn
+import numpy as np
 from models.resnet import resnet110, resnet110_ic
 from models.densenet import densenet40, densenet40_ic
 from models.vgg import vgg16_bn, vgg16_bn_ic
+from models.mobilenet import mobilenet, mobilenet_ic
+from models.googlenet import googlenet, googlenet_ic
 from train.training import Learner
 
-__all__ = ['resnet110', 'resnet110_ic', 'vgg16_bn', 'vgg16_bn_ic', 'densenet40', 'densenet40_ic']
+__all__ = ['resnet110', 'resnet110_ic', 'vgg16_bn', 'vgg16_bn_ic', 'densenet40', 'densenet40_ic', 'mobilenet', 'mobilenet_ic',
+           'googlenet', 'googlenet_ic']
 
 def train_CIFAR10(model_type, train_config=None):
     
@@ -35,6 +39,8 @@ def train_CIFAR10(model_type, train_config=None):
     # train
     learner = Learner(task='cifar10', train_config=train_config)
     res = learner.train()
+    
+    np.save(f'/res/cifar10_{model_type}.npy', res)
     
     return res
 
@@ -66,5 +72,7 @@ def train_CIFAR100(model_type, train_config=None):
     # train
     learner = Learner(task='cifar100', train_config=train_config)
     res = learner.train()
+    
+    np.save(f'/res/cifar100_{model_type}.npy', res)
     
     return res
