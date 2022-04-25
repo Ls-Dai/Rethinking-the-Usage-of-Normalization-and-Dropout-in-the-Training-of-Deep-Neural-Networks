@@ -6,7 +6,8 @@ data/
 res/*.pth
 train/.DS_Store
 utils/.DS_Store
-mdoels/.DS_Store
+models/.DS_Store
+res/.DS_Store
 
 # C extensions
 *.so
