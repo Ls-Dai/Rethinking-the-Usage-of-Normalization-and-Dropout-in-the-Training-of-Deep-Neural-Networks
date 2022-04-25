@@ -162,7 +162,7 @@ class DenseNet_IC(nn.Module):
         return out
     
     
-    
+# model functions
 def densenet40(num_classes):
     print("INFO: Creating densenet40 model")
     model = DenseNet(Bottleneck, [12,12,12], growth_rate=12, reduction=1, num_classes=num_classes)

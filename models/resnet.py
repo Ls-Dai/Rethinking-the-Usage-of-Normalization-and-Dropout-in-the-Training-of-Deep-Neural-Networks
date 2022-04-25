@@ -159,7 +159,7 @@ class ResNet_IC(nn.Module):
         out = self.linear(out)
         return out
 
-
+# model functions
 def resnet110(num_classes):
     print("INFO: Creating resnet110 model")
     model = ResNet(BasicBlock, [18,18,18], num_classes=num_classes)

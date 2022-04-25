@@ -59,14 +59,6 @@ cfg = {
           512, 512, 512, 512, 'M'],
 }
 
-
-def vgg16_bn(num_classes):
-    print("INFO: Creating VGG-16 Model")
-    model = VGG(make_layers(cfg['D'], batch_norm=True), num_classes)
-    model.model_name = "vgg16"
-    return model 
-
-
 # Define VGG model with IC layer
 class IC_layer(nn.Module):
     def __init__(self, planes, p=0.05, dim ='2d'):
@@ -124,6 +116,13 @@ def make_layers_ic(cfg):
             layers += [IC_layer(in_channels), conv2d, nn.ReLU(inplace=True)]
             in_channels = v
     return nn.Sequential(*layers)
+
+# model functions
+def vgg16_bn(num_classes):
+    print("INFO: Creating VGG-16 Model")
+    model = VGG(make_layers(cfg['D'], batch_norm=True), num_classes)
+    model.model_name = "vgg16"
+    return model 
 
 def vgg16_bn_ic(num_classes):
     print("INFO: Creating VGG-16 Model with IC layer")

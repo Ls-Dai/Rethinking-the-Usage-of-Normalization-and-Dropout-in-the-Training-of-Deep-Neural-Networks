@@ -44,16 +44,6 @@ class MobileNet(nn.Module):
         out = out.view(out.size(0), -1)
         out = self.linear(out)
         return out
-    
-def mobilenet(num_classes):
-    print("INFO: Creating Mobilenet Model")
-    
-    # (128,2) means conv planes=128, conv stride=2, by default conv stride=1
-    cfg = [64, (128,2), 128, (256,2), 256, (512,2), 512, 512, 512, 512, 512, (1024,2), 1024]
-    model = MobileNet(cfg, num_classes)
-    model.model_name = 'mobilenet'
-    
-    return model
 
 # MobileNetV1 with IC Layer
 class IC_layer(nn.Module):
@@ -110,7 +100,19 @@ class MobileNet_IC(nn.Module):
         out = out.view(out.size(0), -1)
         out = self.linear(self.ic2(out))
         return out
+
+# model functions
+
+def mobilenet(num_classes):
+    print("INFO: Creating Mobilenet Model")
     
+    # (128,2) means conv planes=128, conv stride=2, by default conv stride=1
+    cfg = [64, (128,2), 128, (256,2), 256, (512,2), 512, 512, 512, 512, 512, (1024,2), 1024]
+    model = MobileNet(cfg, num_classes)
+    model.model_name = 'mobilenet'
+    
+    return model
+
 def mobilenet_ic(num_classes):
     print("INFO: Creating Mobilenet Model with IC layer")
     # (128,2) means conv planes=128, conv stride=2, by default conv stride=1

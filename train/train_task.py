@@ -40,7 +40,7 @@ def train_CIFAR10(model_type, train_config=None):
     learner = Learner(task='cifar10', train_config=train_config)
     res = learner.train()
     
-    np.save(f'/res/cifar10_{model_type}.npy', res)
+    np.save(f'./res/cifar10_{model_type}.npy', res)
     
     return res
 
@@ -73,6 +73,6 @@ def train_CIFAR100(model_type, train_config=None):
     learner = Learner(task='cifar100', train_config=train_config)
     res = learner.train()
     
-    np.save(f'/res/cifar100_{model_type}.npy', res)
+    np.save(f'./res/cifar100_{model_type}.npy', res)
     
     return res
