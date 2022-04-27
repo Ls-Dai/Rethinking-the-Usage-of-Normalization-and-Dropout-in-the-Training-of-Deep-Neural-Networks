@@ -18,6 +18,8 @@ class VGG(nn.Module):
             nn.Dropout(),
             nn.Linear(512, 512),
             nn.ReLU(True),
+        )
+        self.linear = nn.Sequential(
             nn.Linear(512, num_classes),
         )
          # Initialize weights
@@ -32,6 +34,7 @@ class VGG(nn.Module):
         x = self.features(x)
         x = x.view(x.size(0), -1)
         x = self.classifier(x)
+        x = self.linear(x)
         return x
 
 
@@ -88,6 +91,8 @@ class VGG_IC(nn.Module):
             nn.Linear(512, 512),
             nn.ReLU(True),
             IC_layer(512, dim='1d'),
+        )
+        self.linear = nn.Sequential(
             nn.Linear(512, num_classes),
         )
          # Initialize weights
@@ -102,6 +107,7 @@ class VGG_IC(nn.Module):
         x = self.features(x)
         x = x.view(x.size(0), -1)
         x = self.classifier(x)
+        x = self.linear(x)
         return x
 
 
