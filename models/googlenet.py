@@ -208,7 +208,7 @@ def googlenet(num_classes):
 
 def googlenet_ic(num_classes):
     print("INFO: Creating GoogleNet Model with IC Layer")
-    model = GoogLeNet(num_classes)
+    model = GoogLeNet_IC(num_classes)
     model.model_name = 'googlenet_ic'
     
     return model
