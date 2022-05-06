@@ -137,3 +137,4 @@ dmypy.json
 
 # models 
 .pth
+/res/models
