@@ -21,3 +21,4 @@ We are going to show results of 3 different kinds of models on 4 different datas
 Click-through rate (CTR) is a very important metric for evaluating the performance of online advertising or recommendation system. Some machine learning models will be used to predict CTR, whether the user will click or not. Wide Deep Model is the start-of-the-art model to predict CTR. To evaluate the performance of the IC layer on the CTR Task, we conducted extensive experiments based on Wide Deep Model.
 
 Code: WideAndDeep_pytorch.ipynb
+Dataset: https://www.kaggle.com/c/avazu-ctr-prediction
